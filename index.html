@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mashrur Kabir — Aerospace Journalist &amp; Aspiring Astronautical Engineer</title>
+  <meta name="description" content="Mashrur Kabir writes about spaceflight, propulsion, and AI in high-stakes aerospace systems for Proxima Report — and is training to build the machines he covers.">
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Inter via Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Open Graph — TODO: add a 1200x630 assets/og-image.jpg and uncomment the og:image line -->
+  <meta property="og:title" content="Mashrur Kabir">
+  <meta property="og:description" content="Aerospace journalism and an engineering path aimed at astronautical propulsion.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mashrurkabir.com/">
+  <!-- <meta property="og:image" content="https://mashrurkabir.com/assets/og-image.jpg"> -->
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ======================= Header (shared markup — edit on all 5 pages) ======================= -->
+  <header class="site-header" data-header>
+    <div class="header-inner container">
+      <a href="index.html" class="brand">Mashrur Kabir</a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="writing.html">Writing</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+        <span class="nav-toggle-box" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="visually-hidden">Menu</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ======================= Hero ======================= -->
+    <section class="hero" aria-label="Introduction">
+      <div class="hero-bg" data-hero-bg aria-hidden="true">
+        <!-- Starfield canvas — active when HERO_BACKGROUND = 'starfield' in script.js -->
+        <canvas class="hero-canvas" data-starfield hidden></canvas>
+
+        <!--
+          Background video — active when HERO_BACKGROUND = 'video' in script.js.
+
+          TODO (video setup):
+            1. Drop your loop into  assets/hero.mp4  (WebM twin at assets/hero.webm is optional
+               but nice — delete that <source> line if you skip it).
+            2. Replace assets/hero-poster.jpg with a real frame from the video.
+            3. In script.js, flip the one-line toggle:  const HERO_BACKGROUND = 'video';
+          Specs and ffmpeg commands are in the README.
+        -->
+        <video class="hero-video" data-hero-video hidden muted autoplay loop playsinline
+               preload="none" poster="assets/hero-poster.jpg">
+          <source data-src="assets/hero.webm" type="video/webm">
+          <source data-src="assets/hero.mp4" type="video/mp4">
+        </video>
+
+        <div class="hero-overlay"></div>
+      </div>
+
+      <div class="hero-content container">
+        <h1 class="hero-title">Mashrur Kabir</h1>
+        <p class="hero-tagline">Aspiring Astronautical Engineer</p>
+        <div class="hero-actions">
+          <a class="btn" href="projects.html">View Projects</a>
+          <a class="btn btn-ghost" href="writing.html">Read My Writing</a>
+        </div>
+      </div>
+
+      <a class="scroll-cue" href="#focus" aria-label="Scroll to content">Scroll</a>
+    </section>
+
+    <!-- ======================= Positioning statement ======================= -->
+    <section class="section" id="focus">
+      <div class="container">
+        <p class="eyebrow reveal">Focus</p>
+        <p class="statement reveal">
+          I write about the machines that leave Earth.
+          <em>I'm training to build them.</em>
+        </p>
+        <p class="statement-sub reveal" data-delay="1">
+          Aerospace journalism at Proxima Report. An engineering path aimed at
+          astronautical propulsion.
+        </p>
+      </div>
+    </section>
+
+    <!-- ======================= Selected work ======================= -->
+    <section class="section" aria-labelledby="selected-work-title">
+      <div class="container">
+        <p class="eyebrow reveal">Selected Work</p>
+        <h2 class="section-title reveal" id="selected-work-title">Three places to start</h2>
+
+        <div class="card-grid">
+          <!-- Card 1 — flagship writing -->
+          <article class="card reveal" data-delay="1">
+            <div class="card-tags"><span>Writing</span><span>AI</span><span>Spacecraft</span></div>
+            <h3>The Verification Frontier</h3>
+            <p>Why human judgment stays essential as AI and neural networks move into flight-critical spacecraft systems.</p>
+            <a class="text-link card-cover" href="writing.html">Read the writing <span aria-hidden="true">&rarr;</span></a>
+          </article>
+
+          <!-- Card 2 — engineering project -->
+          <article class="card reveal" data-delay="2">
+            <div class="card-tags"><span>Project</span><span>Python</span><span>Aviation</span></div>
+            <h3>Jetlined</h3>
+            <p>A Python aviation-reference tool built from first principles — structuring real-world flight data into something usable.</p>
+            <a class="text-link card-cover" href="projects.html">See the project <span aria-hidden="true">&rarr;</span></a>
+          </article>
+
+          <!-- Card 3 — publication -->
+          <article class="card reveal" data-delay="3">
+            <div class="card-tags"><span>Publication</span><span>Leadership</span></div>
+            <h3>MTK News</h3>
+            <p>A volunteer STEM publication I founded and ran for three years — roughly 35 writers and hundreds of published articles.</p>
+            <a class="text-link card-cover" href="projects.html">The full story <span aria-hidden="true">&rarr;</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= Verification frontier teaser ======================= -->
+    <section class="section" aria-labelledby="frontier-title">
+      <div class="container">
+        <div class="frontier reveal">
+          <p class="eyebrow">The Verification Frontier</p>
+          <h2 class="section-title" id="frontier-title">Machines will decide. Humans have to verify.</h2>
+          <p>
+            AI is moving into spacecraft — guidance, diagnostics, autonomy. The hard
+            question is no longer whether machines can make the call. It's how humans
+            verify the call when the stakes are orbital. That's the frontier I write about.
+          </p>
+          <a class="text-link" href="writing.html">Follow the thread <span aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= Closing CTA ======================= -->
+    <section class="section cta-band" aria-labelledby="cta-title">
+      <div class="container">
+        <p class="eyebrow reveal" style="justify-content: center;">Contact</p>
+        <h2 class="section-title reveal" id="cta-title">Working on something that leaves the ground?</h2>
+        <a class="btn reveal" data-delay="1" href="contact.html">Get in Touch</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================= Footer (shared markup — edit on all 5 pages) ======================= -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <p class="footer-name">Mashrur Kabir</p>
+        <p class="footer-tag">Writing about spaceflight. Training to build it.</p>
+      </div>
+
+      <nav class="footer-col" aria-label="Footer">
+        <span class="label">Site</span>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="writing.html">Writing</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-col">
+        <span class="label">Elsewhere</span>
+        <ul>
+          <!-- TODO: replace # with your real profile URLs (same block on every page) -->
+          <li><a href="#" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="#" target="_blank" rel="noopener">X / Twitter</a></li>
+          <li><a href="#" target="_blank" rel="noopener">Proxima Report</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; <span data-year>2026</span> Mashrur Kabir</p>
+      <p>Built by hand. HTML, CSS, and vanilla JS.</p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

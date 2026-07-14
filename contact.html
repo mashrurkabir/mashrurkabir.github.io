@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — Mashrur Kabir</title>
+  <meta name="description" content="Get in touch with Mashrur Kabir — editors, engineers, and the generally space-curious welcome.">
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <meta property="og:title" content="Contact — Mashrur Kabir">
+  <meta property="og:description" content="My inbox is open.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mashrurkabir.com/contact.html">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header is-scrolled" data-header>
+    <div class="header-inner container">
+      <a href="index.html" class="brand">Mashrur Kabir</a>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="writing.html">Writing</a></li>
+          <li><a href="contact.html" aria-current="page">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
+        <span class="nav-toggle-box" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="visually-hidden">Menu</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <header class="page-header">
+      <div class="container">
+        <p class="eyebrow">Contact</p>
+        <h1>My inbox is open</h1>
+        <p class="lede">Editors, engineers, and the generally space-curious — send story tips, project questions, or a good argument about propulsion.</p>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="container contact-grid">
+
+        <!-- ======================= Form (Formspree) ======================= -->
+        <!--
+          TODO (Formspree setup — takes ~2 minutes):
+            1. Create a free account at https://formspree.io and add a new form.
+            2. Copy your form ID (looks like "mabcdxyz").
+            3. Replace YOUR_FORM_ID in the action attribute below.
+          Until then, script.js blocks submission and shows a friendly reminder.
+        -->
+        <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" data-contact-form>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" required autocomplete="name">
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input id="email" name="_replyto" type="email" required autocomplete="email">
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="6" required></textarea>
+          </div>
+
+          <!-- Honeypot spam trap — leave as-is; humans never see it -->
+          <input class="honeypot" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <button class="btn btn-solid" type="submit">Send Message</button>
+          <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+        </form>
+
+        <!-- ======================= Direct links ======================= -->
+        <aside class="contact-aside">
+          <h2>Prefer direct?</h2>
+          <ul class="contact-links">
+            <li>
+              <!-- TODO: replace with your real email address -->
+              <a href="mailto:hello@mashrurkabir.com">
+                hello@mashrurkabir.com
+                <span class="kind">Email</span>
+              </a>
+            </li>
+            <li>
+              <!-- TODO: replace # with your LinkedIn profile URL -->
+              <a href="#" target="_blank" rel="noopener">
+                LinkedIn
+                <span class="kind">Profile</span>
+              </a>
+            </li>
+            <li>
+              <!-- TODO: replace # with your Proxima Report author page -->
+              <a href="#" target="_blank" rel="noopener">
+                Proxima Report
+                <span class="kind">Byline</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <p class="footer-name">Mashrur Kabir</p>
+        <p class="footer-tag">Writing about spaceflight. Training to build it.</p>
+      </div>
+      <nav class="footer-col" aria-label="Footer">
+        <span class="label">Site</span>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="writing.html">Writing</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="footer-col">
+        <span class="label">Elsewhere</span>
+        <ul>
+          <!-- TODO: replace # with your real profile URLs (same block on every page) -->
+          <li><a href="#" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="#" target="_blank" rel="noopener">X / Twitter</a></li>
+          <li><a href="#" target="_blank" rel="noopener">Proxima Report</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; <span data-year>2026</span> Mashrur Kabir</p>
+      <p>Built by hand. HTML, CSS, and vanilla JS.</p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
