@@ -164,11 +164,11 @@ function initStarfield(heroBg) {
   const CONFIG = {
     density: 1 / 9000,   // stars per px² of hero area
     maxStars: 340,       // hard cap for very large screens
-    minSpeed: 3,         // px per second (upward drift — a slow ascent)
-    maxSpeed: 9,
-    accentRatio: 0.14,   // fraction of stars tinted steel blue
+    minSpeed: 16.5,      // px per second (upward drift — a slow ascent)
+    maxSpeed: 49.5,
+    accentRatio: 0.14,   // fraction of stars tinted indigo
     starColor: '235, 240, 245',
-    accentColor: '143, 198, 223',
+    accentColor: '139, 132, 255',
     bgTop: '#0c0f14',    // canvas paints its own backdrop each frame
     bgBottom: '#0a0a0a',
   };

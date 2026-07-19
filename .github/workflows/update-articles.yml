@@ -1,0 +1,47 @@
+name: Update articles
+
+# Refreshes the article lists on writing.html from the Proxima Report and
+# Substack RSS feeds. Runs on a schedule; commits only when something changed,
+# and that commit triggers the normal GitHub Pages redeploy.
+
+on:
+  schedule:
+    - cron: "0 * * * *"      # top of every hour (UTC). GitHub may delay under load.
+  workflow_dispatch: {}       # adds a manual "Run workflow" button in the Actions tab
+
+# Allow the job's token to push the refreshed writing.html back to the repo.
+permissions:
+  contents: write
+
+# Never let two refreshes run at once (avoids racing pushes).
+concurrency:
+  group: update-articles
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Pull latest posts into writing.html
+        run: python scripts/update_articles.py
+
+      - name: Commit & push if writing.html changed
+        run: |
+          if [ -n "$(git status --porcelain writing.html)" ]; then
+            git config user.name  "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add writing.html
+            git commit -m "chore: refresh latest articles [skip ci]"
+            git push
+            echo "Pushed refreshed article list."
+          else
+            echo "No feed changes — nothing to commit."
+          fi

@@ -150,6 +150,36 @@ The `CNAME` file in this repo pins the domain so it survives future pushes — d
 
 Just commit and push to `main` — Pages redeploys automatically in about a minute.
 
+## Auto-updating the writing page
+
+The article lists on `writing.html` refresh themselves from your RSS feeds — no manual editing. A scheduled GitHub Action fetches your latest posts and commits them back into the page, which triggers the normal Pages redeploy.
+
+**Files involved:**
+
+- `scripts/update_articles.py` — fetches the Proxima Report and Substack feeds, parses them, and rewrites the article regions of `writing.html`. Pure Python standard library, no dependencies.
+- `.github/workflows/update-articles.yml` — runs the script hourly (and on demand), committing only when a feed actually changed.
+- `writing.html` — the article regions live between `<!-- ARTICLES:*:start -->` / `<!-- ARTICLES:*:end -->` comments. **Don't hand-edit between those markers** — the script overwrites them. Everything else on the page is yours.
+
+**How it behaves:**
+
+- Pulls the newest 6 posts per source and renders them with your existing `.entry` styling, linking out to the original article.
+- Substack has no posts yet, so it shows the "coming soon" panel automatically; it flips to a real list the moment you publish — no code change needed.
+- If a feed is temporarily unreachable, that section is left untouched (it never wipes good content), and the run aborts without a commit only if *every* feed fails.
+
+**One-time setup (after the repo is on GitHub):**
+
+1. Push the site (see the deploy steps above). The workflow ships with `permissions: contents: write`, so its commits are allowed out of the box.
+2. Repo → **Settings → Actions → General → Workflow permissions** → confirm **Read and write permissions** is selected (default for most accounts).
+3. That's it. To trigger it immediately instead of waiting for the hour, go to the **Actions** tab → **Update articles** → **Run workflow**.
+
+**Adjusting it:**
+
+- Frequency: change the `cron` line in the workflow (e.g. `"0 */6 * * *"` for every 6 hours).
+- How many posts show: `MAX_ITEMS` at the top of `scripts/update_articles.py`.
+- Run it locally any time to preview: `python scripts/update_articles.py`.
+
+Note: GitHub pauses scheduled workflows after ~60 days with no repo activity. The Action's own commits count as activity, so an actively-publishing site stays live; if it ever pauses, one manual run re-arms it.
+
 ## Performance notes
 
 - The starfield costs effectively nothing: it caps device-pixel-ratio at 2, caps star count, and stops animating when the hero is off-screen or the tab is hidden.

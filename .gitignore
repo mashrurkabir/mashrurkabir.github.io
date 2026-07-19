@@ -1,0 +1,10 @@
+# Claude Code local settings — not part of the site
+.claude/
+
+# Python bytecode cache (from scripts/update_articles.py)
+__pycache__/
+*.pyc
+
+# OS cruft
+.DS_Store
+Thumbs.db

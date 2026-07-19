@@ -1,6 +1,6 @@
 /* ==========================================================================
    MASHRURKABIR.COM — shared stylesheet
-   Dark aerospace-minimalist system: near-black, off-white, one steel-blue
+   Dark aerospace-minimalist system: near-black, off-white, one indigo
    accent, Inter throughout (weight + tracking do the differentiation).
 
    Search "TODO" for the handful of values you might want to tune.
@@ -10,16 +10,16 @@
    1. Design tokens
    -------------------------------------------------------------------------- */
 :root {
-  /* Palette — TODO: adjust --accent if you want a different steel blue */
+  /* Palette — TODO: adjust --accent if you want a different accent hue */
   --bg:            #0a0a0a;
   --bg-raised:     #101114;   /* cards, form fields */
   --bg-panel:      #0d0e11;   /* larger panels */
   --text:          #f5f5f5;
   --text-muted:    #a2aab1;
   --text-faint:    #6f777e;
-  --accent:        #6faecb;   /* steel blue */
-  --accent-strong: #8fc6df;
-  --accent-soft:   rgba(111, 174, 203, 0.13);
+  --accent:        #6C63FF;   /* indigo */
+  --accent-strong: #8B84FF;   /* lighter tint — hovers, badges, emphasis */
+  --accent-soft:   rgba(108, 99, 255, 0.13);
   --border:        rgba(255, 255, 255, 0.08);
   --border-strong: rgba(255, 255, 255, 0.18);
 
@@ -219,8 +219,9 @@ a {
 }
 
 .btn:hover {
-  background: var(--text);
-  color: #0a0a0a;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--text);
 }
 
 .btn-solid {
@@ -595,8 +596,8 @@ a {
 
 .card:hover {
   transform: translateY(-6px);
-  border-color: rgba(111, 174, 203, 0.45);
-  box-shadow: 0 14px 40px -18px rgba(111, 174, 203, 0.35);
+  border-color: rgba(108, 99, 255, 0.45);
+  box-shadow: 0 14px 40px -18px rgba(108, 99, 255, 0.35);
 }
 
 .card-tags {
@@ -702,7 +703,7 @@ a {
   padding-bottom: clamp(2.75rem, 6vw, 4.5rem);
   border-bottom: 1px solid var(--border);
   background:
-    radial-gradient(60% 120% at 70% -20%, rgba(111, 174, 203, 0.08), transparent 60%),
+    radial-gradient(60% 120% at 70% -20%, rgba(108, 99, 255, 0.08), transparent 60%),
     var(--bg);
 }
 
@@ -750,7 +751,7 @@ a {
   border: 1px dashed var(--border-strong);
   border-radius: 6px;
   background:
-    radial-gradient(80% 80% at 50% 20%, rgba(111, 174, 203, 0.07), transparent),
+    radial-gradient(80% 80% at 50% 20%, rgba(108, 99, 255, 0.07), transparent),
     var(--bg-raised);
   color: var(--text-faint);
   font-size: 0.7rem;
@@ -904,7 +905,7 @@ a {
 
 .badge--proxima {
   color: var(--accent-strong);
-  border-color: rgba(111, 174, 203, 0.4);
+  border-color: rgba(108, 99, 255, 0.4);
   background: var(--accent-soft);
 }
 
