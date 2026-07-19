@@ -253,17 +253,32 @@ a {
   inset: 0 0 auto 0;
   z-index: 100;
   height: var(--header-h);
-  background: transparent;
   border-bottom: 1px solid transparent;
-  transition: background 0.35s var(--ease), border-color 0.35s var(--ease),
-    backdrop-filter 0.35s var(--ease);
+  transition: border-color 0.35s var(--ease);
 }
 
-/* Solidifies once the page scrolls (class added by script.js) */
-.site-header.is-scrolled {
+/* The frosted background lives on a pseudo-element, NOT the header itself.
+   A backdrop-filter on the header would make it the containing block for the
+   fixed mobile menu (a descendant) and trap it — the source of the open/close
+   "morph". Keeping it on ::before avoids that while still fading in on scroll. */
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
   background: rgba(10, 10, 10, 0.82);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
+  opacity: 0;
+  transition: opacity 0.35s var(--ease);
+}
+
+/* Solidifies once the page scrolls (class added by script.js) */
+.site-header.is-scrolled::before {
+  opacity: 1;
+}
+
+.site-header.is-scrolled {
   border-bottom-color: var(--border);
 }
 
@@ -383,15 +398,6 @@ a {
 
   body.nav-open {
     overflow: hidden;
-  }
-
-  /* When scrolled, the header has a backdrop-filter, which makes it the
-     containing block for the fixed .site-nav — trapping the menu inside the
-     header box instead of the viewport. Drop it while the menu is open so the
-     overlay fills the screen. (The header is hidden behind the menu anyway.) */
-  body.nav-open .site-header {
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
   }
 
   body.nav-open .nav-toggle-box span:nth-child(1) {
