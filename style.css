@@ -385,6 +385,15 @@ a {
     overflow: hidden;
   }
 
+  /* When scrolled, the header has a backdrop-filter, which makes it the
+     containing block for the fixed .site-nav — trapping the menu inside the
+     header box instead of the viewport. Drop it while the menu is open so the
+     overlay fills the screen. (The header is hidden behind the menu anyway.) */
+  body.nav-open .site-header {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
   body.nav-open .nav-toggle-box span:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
   }
