@@ -588,6 +588,11 @@ a {
   max-width: 52ch;
 }
 
+/* "About Me" link-button under the focus statement */
+#focus .btn {
+  margin-top: 2.5rem;
+}
+
 /* Card grid (home "Selected Work" + projects page) */
 .card-grid {
   display: grid;
