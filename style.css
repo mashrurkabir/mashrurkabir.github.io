@@ -356,9 +356,8 @@ a {
   .site-nav {
     position: fixed;
     inset: 0;
-    background: rgba(10, 10, 10, 0.96);
-    -webkit-backdrop-filter: blur(16px);
-    backdrop-filter: blur(16px);
+    z-index: 110; /* above page content, below the close button (120) */
+    background: var(--bg); /* fully opaque — no bleed-through on iOS */
     display: grid;
     place-items: center;
     opacity: 0;
