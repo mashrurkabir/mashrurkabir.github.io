@@ -58,6 +58,11 @@
   </script>
 </head>
 <body>
+  <!-- Site-wide starfield — fixed canvas behind every page (shared markup on all pages; script.js §6) -->
+  <div class="site-bg" data-site-bg aria-hidden="true">
+    <canvas data-starfield hidden></canvas>
+  </div>
+
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header is-scrolled" data-header>

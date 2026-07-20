@@ -12,6 +12,11 @@
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+  <!-- Site-wide starfield — fixed canvas behind every page (shared markup on all pages; script.js §6) -->
+  <div class="site-bg" data-site-bg aria-hidden="true">
+    <canvas data-starfield hidden></canvas>
+  </div>
+
   <main id="main">
     <header class="page-header" style="min-height: 70vh; display: grid; align-items: center;">
       <div class="container">
@@ -22,5 +27,7 @@
       </div>
     </header>
   </main>
+
+  <script src="/script.js" defer></script>
 </body>
 </html>

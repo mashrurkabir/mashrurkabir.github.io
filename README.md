@@ -6,7 +6,7 @@ Static portfolio site — plain HTML, CSS, and vanilla JavaScript. No build step
 
 ```
 /
-├── index.html        Home (hero + starfield/video, selected work, verification frontier, CTA)
+├── index.html        Home (hero, selected work, verification frontier, CTA)
 ├── about.html        Bio, What I Do, north stars
 ├── projects.html     Project card grid
 ├── mtk-news.html     MTK News case study — linked from the Projects grid and the home
@@ -55,16 +55,18 @@ Every spot that needs your input is marked with a `TODO` comment. Search the pro
 
 Note: the header and footer are plain shared markup, so a nav or footer edit means updating all six HTML files (plus `404.html` if relevant). Keep them identical. `mtk-news.html` intentionally has no `aria-current` in the nav — it's a subpage, not a nav destination.
 
-## Hero background: video vs. starfield
+## Site background: the starfield (and the hero video option)
 
-The home hero supports two backgrounds. **One line** in `script.js` controls which:
+The animated canvas starfield — slow upward drift, gentle twinkle — is the **site-wide background**. It renders into a fixed canvas at the top of `<body>` on every page (shared markup, like the header/footer), so it stays visible behind all content while scrolling. It pauses in background tabs and renders a static frame for users with reduced motion enabled.
+
+The home hero can additionally paint a video over it. **One line** in `script.js` controls that:
 
 ```js
 const HERO_BACKGROUND = 'starfield'; // 'starfield' | 'video'
 ```
 
-- **`'starfield'` (current default)** — an animated canvas starfield with slow upward drift and a gentle twinkle. No assets needed; the site looks finished today. It pauses off-screen and in background tabs, and renders a static frame for users with reduced motion enabled.
-- **`'video'`** — a full-bleed looping background video. Video bytes are never downloaded while starfield mode is selected (sources use `data-src`), so leaving the video markup in place costs nothing.
+- **`'starfield'` (current default)** — nothing extra; the hero is transparent and the site-wide starfield shows through. No assets needed; the site looks finished today.
+- **`'video'`** — a full-bleed looping background video covers the starfield inside the hero only (the rest of the page keeps the starfield). Video bytes are never downloaded while starfield mode is selected (sources use `data-src`), so leaving the video markup in place costs nothing.
 
 ### Switching to video
 
@@ -192,7 +194,7 @@ Note: GitHub pauses scheduled workflows after ~60 days with no repo activity. Th
 
 ## Performance notes
 
-- The starfield costs effectively nothing: it caps device-pixel-ratio at 2, caps star count, and stops animating when the hero is off-screen or the tab is hidden.
+- The starfield costs effectively nothing: it caps device-pixel-ratio at 2, caps star count, sizes the canvas to the viewport (not the page), and stops animating when the tab is hidden.
 - Keep the poster under ~300 KB and the video under 8 MB; those two files will dominate load time.
 - Fonts load with `display=swap`, so text renders immediately.
 - Everything else is a few KB of hand-written HTML/CSS/JS.

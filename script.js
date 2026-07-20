@@ -7,7 +7,7 @@
      2. Sticky header
      3. Mobile navigation
      4. Scroll-reveal animations
-     5. Hero background (video or starfield)
+     5. Site background (starfield on every page, optional hero video)
      6. Starfield renderer
      7. Footer year
      8. Contact form (Formspree)
@@ -22,9 +22,13 @@
 /**
  * HERO BACKGROUND TOGGLE — the one line to change.
  *
- *   'starfield' → animated canvas starfield (works today, no assets needed)
- *   'video'     → looping background video from assets/hero.mp4
- *                 (drop your file into /assets first — see README.md)
+ * The animated starfield always runs fixed behind every page (see §5/§6).
+ * This toggle only controls the homepage hero's foreground layer:
+ *
+ *   'starfield' → nothing extra; the site-wide starfield shows through
+ *   'video'     → looping background video from assets/hero.mp4 covers the
+ *                 starfield inside the hero (drop your file into /assets
+ *                 first — see README.md)
  */
 const HERO_BACKGROUND = 'starfield'; // TODO: set to 'video' once assets/hero.mp4 exists
 
@@ -109,16 +113,16 @@ const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').mat
 })();
 
 /* --------------------------------------------------------------------------
-   5. Hero background — picks video or starfield based on HERO_BACKGROUND
+   5. Site background — the starfield runs fixed behind every page; in video
+      mode the homepage hero additionally paints a video over it
    -------------------------------------------------------------------------- */
-(function initHeroBackground() {
-  const heroBg = document.querySelector('[data-hero-bg]');
-  if (!heroBg) return; // interior pages have no hero
+(function initSiteBackground() {
+  const siteBg = document.querySelector('[data-site-bg]');
+  if (siteBg) initStarfield(siteBg);
 
   if (HERO_BACKGROUND === 'video') {
-    initHeroVideo(heroBg);
-  } else {
-    initStarfield(heroBg);
+    const heroBg = document.querySelector('[data-hero-bg]');
+    if (heroBg) initHeroVideo(heroBg);
   }
 })();
 
@@ -126,11 +130,14 @@ const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').mat
  * Activates the <video> element. Sources are stored in data-src so the
  * browser never downloads video bytes while starfield mode is selected.
  * Every failure path (autoplay blocked, missing file, reduced motion)
- * falls back to the static poster painted by .hero-bg in CSS.
+ * falls back to the static poster painted by .hero-bg.has-video in CSS.
  */
 function initHeroVideo(heroBg) {
   const video = heroBg.querySelector('[data-hero-video]');
   if (!video) return;
+
+  // Opaque poster + full scrim so the video, not the starfield, owns the hero
+  heroBg.classList.add('has-video');
 
   // Respect reduced motion: leave the static poster, skip autoplay entirely
   if (REDUCED_MOTION) return;
@@ -154,15 +161,16 @@ function initHeroVideo(heroBg) {
 }
 
 /* --------------------------------------------------------------------------
-   6. Starfield — lightweight canvas particle field with slow upward drift
+   6. Starfield — lightweight canvas particle field with slow upward drift,
+      fixed to the viewport so it persists behind every page while scrolling
    -------------------------------------------------------------------------- */
-function initStarfield(heroBg) {
-  const canvas = heroBg.querySelector('[data-starfield]');
+function initStarfield(container) {
+  const canvas = container.querySelector('[data-starfield]');
   if (!canvas) return;
 
   /* Tuning knobs — TODO: adjust to taste */
   const CONFIG = {
-    density: 1 / 9000,   // stars per px² of hero area
+    density: 1 / 9000,   // stars per px² of viewport area
     maxStars: 340,       // hard cap for very large screens
     minSpeed: 16.5,      // px per second (upward drift — a slow ascent)
     maxSpeed: 49.5,
@@ -179,7 +187,6 @@ function initStarfield(heroBg) {
   let height = 0;
   let rafId = null;
   let lastTime = 0;
-  let inView = true;
 
   canvas.hidden = false;
 
@@ -198,7 +205,7 @@ function initStarfield(heroBg) {
   }
 
   function resize() {
-    const rect = heroBg.getBoundingClientRect();
+    const rect = container.getBoundingClientRect();
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     width = rect.width;
     height = rect.height;
@@ -206,8 +213,11 @@ function initStarfield(heroBg) {
     canvas.height = Math.round(height * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
+    // Adjust the population without reshuffling survivors, so mobile
+    // URL-bar height changes don't visibly regenerate the whole field
     const count = Math.min(Math.round(width * height * CONFIG.density), CONFIG.maxStars);
-    stars = Array.from({ length: count }, () => makeStar(true));
+    if (stars.length > count) stars.length = count;
+    while (stars.length < count) stars.push(makeStar(true));
   }
 
   function paintBackdrop() {
@@ -248,7 +258,7 @@ function initStarfield(heroBg) {
   }
 
   function schedule() {
-    if (rafId === null && inView && !document.hidden) {
+    if (rafId === null && !document.hidden) {
       rafId = requestAnimationFrame(frame);
     }
   }
@@ -275,19 +285,7 @@ function initStarfield(heroBg) {
   lastTime = performance.now();
   schedule();
 
-  // Only animate while the hero is on screen and the tab is visible
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver((entries) => {
-      inView = entries[0].isIntersecting;
-      if (inView) {
-        lastTime = performance.now();
-        schedule();
-      } else {
-        pause();
-      }
-    }).observe(heroBg);
-  }
-
+  // The canvas is fixed and always on screen — only pause in hidden tabs
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
       pause();

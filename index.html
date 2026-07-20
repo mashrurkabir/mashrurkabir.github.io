@@ -70,6 +70,11 @@
   </script>
 </head>
 <body>
+  <!-- Site-wide starfield — fixed canvas behind every page (shared markup on all pages; script.js §6) -->
+  <div class="site-bg" data-site-bg aria-hidden="true">
+    <canvas data-starfield hidden></canvas>
+  </div>
+
   <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- ======================= Header (shared markup — edit on all 6 pages) ======================= -->
@@ -99,11 +104,12 @@
     <!-- ======================= Hero ======================= -->
     <section class="hero" aria-label="Introduction">
       <div class="hero-bg" data-hero-bg aria-hidden="true">
-        <!-- Starfield canvas — active when HERO_BACKGROUND = 'starfield' in script.js -->
-        <canvas class="hero-canvas" data-starfield hidden></canvas>
+        <!-- The animated starfield is the fixed site-wide canvas at the top of <body>;
+             in starfield mode this layer stays transparent so it shows through. -->
 
         <!--
           Background video — active when HERO_BACKGROUND = 'video' in script.js.
+          It covers the starfield inside the hero only.
 
           TODO (video setup):
             1. Drop your loop into  assets/hero.mp4  (WebM twin at assets/hero.webm is optional
