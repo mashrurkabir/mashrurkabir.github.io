@@ -19,6 +19,9 @@ Static portfolio site — plain HTML, CSS, and vanilla JavaScript. No build step
 ├── favicon.svg       Star mark favicon
 ├── CNAME             Custom-domain file for GitHub Pages — leave as-is
 ├── README.md         This file
+├── data/
+│   └── articles.json Auto-managed article ledger — every post the feeds have ever
+│                     served (see "Auto-updating the writing page")
 └── assets/
     ├── hero-poster.jpg   Placeholder poster (replace with a real video frame later)
     ├── hero.mp4          ← you add this (hero video)
@@ -156,17 +159,20 @@ Just commit and push to `main` — Pages redeploys automatically in about a minu
 
 The article lists on `writing.html` refresh themselves from your RSS feeds — no manual editing. A scheduled GitHub Action fetches your latest posts and commits them back into the page, which triggers the normal Pages redeploy.
 
+RSS feeds are windows, not archives — most platforms only serve the newest 10–20 items. So the script also keeps a **permanent ledger**, `data/articles.json`: every post it has ever seen is recorded there and never deleted, even after it falls out of the live feed. The featured lists show the newest 6 per source; everything older automatically collects in a compact **Archive** section at the bottom of the writing page (it appears only once there's something in it).
+
 **Files involved:**
 
-- `scripts/update_articles.py` — fetches the Proxima Report and Substack feeds, parses them, and rewrites the article regions of `writing.html`. Pure Python standard library, no dependencies.
-- `.github/workflows/update-articles.yml` — runs the script hourly (and on demand), committing only when a feed actually changed.
-- `writing.html` — the article regions live between `<!-- ARTICLES:*:start -->` / `<!-- ARTICLES:*:end -->` comments. **Don't hand-edit between those markers** — the script overwrites them. Everything else on the page is yours.
+- `scripts/update_articles.py` — fetches the Proxima Report and Substack feeds, merges them into the ledger (append new, refresh existing, delete nothing), and rewrites the article regions of `writing.html`. Pure Python standard library, no dependencies.
+- `data/articles.json` — the ledger. Auto-managed; committed by the Action so history survives across runs. To remove an article from the site, delete its entry here — but note the next run re-adds it if it's still in the live feed.
+- `.github/workflows/update-articles.yml` — runs the script hourly (and on demand), committing only when something actually changed.
+- `writing.html` — the article regions live between `<!-- ARTICLES:*:start -->` / `<!-- ARTICLES:*:end -->` comments (including the Archive block). **Don't hand-edit between those markers** — the script overwrites them. Everything else on the page is yours.
 
 **How it behaves:**
 
-- Pulls the newest 6 posts per source and renders them with your existing `.entry` styling, linking out to the original article.
+- Features the newest 6 posts per source with your existing `.entry` styling; older pieces render as compact one-line archive rows (date, title, source), merged across sources, newest first.
 - Substack has no posts yet, so it shows the "coming soon" panel automatically; it flips to a real list the moment you publish — no code change needed.
-- If a feed is temporarily unreachable, that section is left untouched (it never wipes good content), and the run aborts without a commit only if *every* feed fails.
+- If a feed is temporarily unreachable, that section is re-rendered from the ledger (identical output, so no commit — good content is never wiped), and the run aborts without writing anything only if *every* feed fails.
 
 **One-time setup (after the repo is on GitHub):**
 
@@ -177,7 +183,7 @@ The article lists on `writing.html` refresh themselves from your RSS feeds — n
 **Adjusting it:**
 
 - Frequency: change the `cron` line in the workflow (e.g. `"0 */6 * * *"` for every 6 hours).
-- How many posts show: `MAX_ITEMS` at the top of `scripts/update_articles.py`.
+- How many posts are featured before the rest move to the Archive: `MAX_ITEMS` at the top of `scripts/update_articles.py`.
 - Run it locally any time to preview: `python scripts/update_articles.py`.
 
 Note: GitHub pauses scheduled workflows after ~60 days with no repo activity. The Action's own commits count as activity, so an actively-publishing site stays live; if it ever pauses, one manual run re-arms it.
