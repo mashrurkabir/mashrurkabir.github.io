@@ -1119,7 +1119,114 @@ a {
 }
 
 /* --------------------------------------------------------------------------
-   12. Footer
+   12. Project subpage (mtk-news.html)
+   -------------------------------------------------------------------------- */
+
+/* "← All projects" crumb above the page-header eyebrow */
+.back-link {
+  margin-bottom: 2.5rem;
+}
+
+/* Vitals strip — label / value / note fact cards */
+.fact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.25rem;
+}
+
+.fact {
+  padding: 1.5rem 1.75rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-panel);
+}
+
+.fact .label {
+  display: block;
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 0.6rem;
+}
+
+.fact .value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.fact .note {
+  margin-top: 0.35rem;
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+}
+
+/* Story prose reuses .about-prose; this adds the offset below the section title */
+.story-prose {
+  margin-top: 3rem;
+}
+
+/* Milestone timeline */
+.timeline {
+  list-style: none;
+  margin-top: 3rem;
+  max-width: 46rem;
+}
+
+.timeline li {
+  position: relative;
+  padding: 0 0 2.75rem 2.25rem;
+  border-left: 1px solid var(--border-strong);
+}
+
+.timeline li:last-child {
+  padding-bottom: 0.25rem;
+  /* Fade the rail out under the final milestone */
+  border-image: linear-gradient(to bottom, var(--border-strong), transparent) 1;
+}
+
+.timeline li::before {
+  content: "";
+  position: absolute;
+  top: 0.35rem;
+  left: -4px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+.timeline .when {
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.timeline h3 {
+  margin-top: 0.4rem;
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.timeline p {
+  margin-top: 0.45rem;
+  color: var(--text-muted);
+  max-width: 56ch;
+}
+
+.timeline + .coming-soon {
+  margin-top: 3rem;
+}
+
+/* --------------------------------------------------------------------------
+   13. Footer
    -------------------------------------------------------------------------- */
 .site-footer {
   border-top: 1px solid var(--border);
@@ -1194,7 +1301,7 @@ a {
 }
 
 /* --------------------------------------------------------------------------
-   13. Scroll-reveal
+   14. Scroll-reveal
    -------------------------------------------------------------------------- */
 .reveal {
   opacity: 0;
@@ -1213,7 +1320,7 @@ a {
 .reveal[data-delay="3"] { transition-delay: 0.3s; }
 
 /* --------------------------------------------------------------------------
-   14. Reduced motion — kill all animation, show everything
+   15. Reduced motion — kill all animation, show everything
    -------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   html {

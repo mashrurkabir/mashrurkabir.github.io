@@ -9,6 +9,8 @@ Static portfolio site — plain HTML, CSS, and vanilla JavaScript. No build step
 ├── index.html        Home (hero + starfield/video, selected work, verification frontier, CTA)
 ├── about.html        Bio, What I Do, north stars
 ├── projects.html     Project card grid
+├── mtk-news.html     MTK News case study — linked from the Projects grid and the home
+│                     "Selected Work" card, deliberately NOT in the primary nav
 ├── writing.html      Article list — Proxima Report + Substack (coming soon)
 ├── contact.html      Formspree form + direct links
 ├── 404.html          On-brand not-found page (GitHub Pages serves this automatically)
@@ -41,12 +43,12 @@ Every spot that needs your input is marked with a `TODO` comment. Search the pro
 
 1. **Hero background** — see the next section.
 2. **Formspree endpoint** — `contact.html`, the form's `action` attribute.
-3. **Links** — social URLs in every footer, the email/LinkedIn/Proxima links on `contact.html`, article URLs on `writing.html`, and the Jetlined GitHub / MTK News links on `projects.html`.
+3. **Links** — social URLs in every footer, the email/LinkedIn/Proxima links on `contact.html`, article URLs on `writing.html`, and the Jetlined GitHub link on `projects.html`. (The MTK News card links to its own subpage, `mtk-news.html` — add an archive link there if one exists.)
 4. **Copy** — the About page is a draft written to be edited; make it yours.
 5. **Photo** — swap the About placeholder for `assets/portrait.jpg` (instructions in the HTML comment).
 6. **Accent color** — optional; change `--accent` at the top of `style.css`.
 
-Note: the header and footer are plain shared markup, so a nav or footer edit means updating all five HTML files (plus `404.html` if relevant). Keep them identical.
+Note: the header and footer are plain shared markup, so a nav or footer edit means updating all six HTML files (plus `404.html` if relevant). Keep them identical. `mtk-news.html` intentionally has no `aria-current` in the nav — it's a subpage, not a nav destination.
 
 ## Hero background: video vs. starfield
 
