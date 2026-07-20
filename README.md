@@ -17,6 +17,8 @@ Static portfolio site — plain HTML, CSS, and vanilla JavaScript. No build step
 ├── style.css         All styles (design tokens at the top)
 ├── script.js         All behavior (hero toggle at the top)
 ├── favicon.svg       Star mark favicon
+├── robots.txt        Crawler rules + sitemap pointer
+├── sitemap.xml       Page list for search engines — add an entry when you add a page
 ├── CNAME             Custom-domain file for GitHub Pages — leave as-is
 ├── README.md         This file
 ├── data/
@@ -46,7 +48,7 @@ Every spot that needs your input is marked with a `TODO` comment. Search the pro
 
 1. **Hero background** — see the next section.
 2. **Formspree endpoint** — `contact.html`, the form's `action` attribute.
-3. **Links** — social URLs in every footer, the email/LinkedIn/Proxima links on `contact.html`, article URLs on `writing.html`, and the Jetlined GitHub link on `projects.html`. (The MTK News card links to its own subpage, `mtk-news.html` — add an archive link there if one exists.)
+3. **Links** — social URLs in every footer, the email/LinkedIn/Proxima links on `contact.html`, article URLs on `writing.html`, and the Jetlined GitHub link on `projects.html`. (The MTK News card links to its own subpage, `mtk-news.html` — add an archive link there if one exists.) When you fill in LinkedIn / X, also add those URLs to the JSON-LD `sameAs` lists in `index.html` and `about.html`.
 4. **Copy** — the About page is a draft written to be edited; make it yours.
 5. **Photo** — swap the About placeholder for `assets/portrait.jpg` (instructions in the HTML comment).
 6. **Accent color** — optional; change `--accent` at the top of `style.css`.

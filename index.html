@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mashrur Kabir — Aerospace Journalist &amp; Aspiring Astronautical Engineer</title>
   <meta name="description" content="Mashrur Kabir writes about spaceflight, propulsion, and AI in high-stakes aerospace systems for Proxima Report — and is training to build the machines he covers.">
+  <link rel="canonical" href="https://mashrurkabir.com/">
 
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
@@ -21,6 +22,52 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://mashrurkabir.com/">
   <!-- <meta property="og:image" content="https://mashrurkabir.com/assets/og-image.jpg"> -->
+
+  <!-- Structured data — ties the byline identity together for search engines.
+       TODO: when you fill in the footer profile links, add your LinkedIn and X
+       URLs to BOTH sameAs lists (here and in about.html). -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://mashrurkabir.com/#website",
+        "url": "https://mashrurkabir.com/",
+        "name": "Mashrur Kabir",
+        "publisher": { "@id": "https://mashrurkabir.com/#person" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://mashrurkabir.com/#person",
+        "name": "Mashrur Kabir",
+        "url": "https://mashrurkabir.com/",
+        "jobTitle": "Aerospace Journalist",
+        "description": "Aerospace journalist at Proxima Report covering spaceflight, propulsion, and AI in high-stakes aerospace systems; aspiring astronautical engineer focused on space nuclear propulsion.",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Proxima Report",
+          "url": "https://proximareport.com/"
+        },
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "Purdue University"
+        },
+        "knowsAbout": [
+          "Spaceflight",
+          "Astronautical propulsion",
+          "Space nuclear propulsion",
+          "AI in aerospace systems",
+          "Aerospace journalism"
+        ],
+        "sameAs": [
+          "https://proximareport.com/author/mashrur/",
+          "https://mashrurk.substack.com/"
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>

@@ -1,0 +1,7 @@
+# mashrurkabir.com — everything page-shaped is crawlable; keep crawlers out
+# of the machine-managed data and tooling folders.
+User-agent: *
+Disallow: /data/
+Disallow: /scripts/
+
+Sitemap: https://mashrurkabir.com/sitemap.xml
