@@ -15,8 +15,8 @@
   --bg-raised:     #101114;   /* cards, form fields */
   --bg-panel:      #0d0e11;   /* larger panels */
   --text:          #f5f5f5;
-  --text-muted:    #a2aab1;
-  --text-faint:    #6f777e;
+  --text-muted:    #b6bdc4;
+  --text-faint:    #7d858c;
   --accent:        #6C63FF;   /* indigo */
   --accent-strong: #8B84FF;   /* lighter tint — hovers, badges, emphasis */
   --accent-soft:   rgba(108, 99, 255, 0.13);
