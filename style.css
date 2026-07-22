@@ -629,6 +629,11 @@ a {
   margin-top: 3rem;
 }
 
+/* "All Projects" link-button under the home card grid */
+.card-grid + .btn {
+  margin-top: 2.5rem;
+}
+
 .card {
   display: flex;
   flex-direction: column;
