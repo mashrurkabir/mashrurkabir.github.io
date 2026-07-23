@@ -11,6 +11,8 @@ Static portfolio site — plain HTML, CSS, and vanilla JavaScript. No build step
 ├── projects.html     Project card grid
 ├── mtk-news.html     MTK News case study — linked from the Projects grid and the home
 │                     "Selected Work" card, deliberately NOT in the primary nav
+├── jetlined.html     Jetlined case study — linked from the Projects grid and the home
+│                     "Selected Work" card, deliberately NOT in the primary nav
 ├── writing.html      Article list — Proxima Report + Substack (coming soon)
 ├── contact.html      Formspree form + direct links
 ├── 404.html          On-brand not-found page (GitHub Pages serves this automatically)
@@ -48,7 +50,7 @@ Every spot that needs your input is marked with a `TODO` comment. Search the pro
 
 1. **Hero background** — see the next section.
 2. **Formspree endpoint** — `contact.html`, the form's `action` attribute.
-3. **Links** — social URLs in every footer, the email/LinkedIn/Proxima links on `contact.html`, article URLs on `writing.html`, and the Jetlined GitHub link on `projects.html`. (The MTK News card links to its own subpage, `mtk-news.html` — add an archive link there if one exists.) When you fill in LinkedIn / X, also add those URLs to the JSON-LD `sameAs` lists in `index.html` and `about.html`.
+3. **Links** — social URLs in every footer, the email/LinkedIn/Proxima links on `contact.html`, article URLs on `writing.html`, and the Jetlined GitHub link on `jetlined.html`. (The MTK News and Jetlined cards link to their own subpages, `mtk-news.html` and `jetlined.html` — add an MTK News archive link on its page if one exists.) When you fill in LinkedIn / X, also add those URLs to the JSON-LD `sameAs` lists in `index.html` and `about.html`.
 4. **Copy** — the About page is a draft written to be edited; make it yours.
 5. **Photo** — swap the About placeholder for `assets/portrait.jpg` (instructions in the HTML comment).
 6. **Accent color** — optional; change `--accent` at the top of `style.css`.

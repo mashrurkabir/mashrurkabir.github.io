@@ -1215,6 +1215,14 @@ a {
   margin-bottom: 2.5rem;
 }
 
+/* Button row under the subpage header lede (e.g. "View on GitHub") */
+.page-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2.25rem;
+}
+
 /* Vitals strip — label / value / note fact cards */
 .fact-grid {
   display: grid;
