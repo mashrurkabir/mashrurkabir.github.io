@@ -1210,8 +1210,13 @@ a {
    12. Project subpage (mtk-news.html)
    -------------------------------------------------------------------------- */
 
-/* "← All projects" crumb above the page-header eyebrow */
+/* "← All projects" crumb above the page-header eyebrow.
+   Block-level + fit-content so it sits on its own line (both it and .eyebrow
+   are inline-flex, which would otherwise let them share a line) while keeping
+   the hit area tight to the text. */
 .back-link {
+  display: flex;
+  width: fit-content;
   margin-bottom: 2.5rem;
 }
 
